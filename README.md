@@ -10,7 +10,7 @@ This is a GitHub action to increment a given semantic version by a given version
 
 ### `version-fragment`
 
-**Required** The versions fragment you want to increment. 
+**Required** The versions fragment you want to increment.
 Possible options are [ major | feature | bug | alpha | beta | rc ]
 
 ## Outputs
@@ -29,3 +29,8 @@ The incremented version.
         version-fragment: 'feature'
     - name: Do something with your bumped release version
       run: echo ${{ steps.bump_version.outputs.next-version }}
+      # will print 2.12.0
+
+
+# License
+The scripts and documentation in this project are released under the [MIT License](LICENSE)
