@@ -1,4 +1,4 @@
-name: Bump Semantic Version
+name: Bump Semantic Version 
 description: GitHub action to increment a given semantic version
 author: Christian Dräger
 branding:
