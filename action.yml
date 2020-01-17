@@ -1,5 +1,5 @@
 name: Increment Semantic Version
-description: This action gives you a bumped semantic version, given the version you want to bump and a the release type / version fragement ( major | feature | bug | alpha | beta | rc ).
+description: Bump a given semantic version by a release type ( major | feature | bug | alpha | beta | rc ).
 author: Christian Dräger
 branding:
   icon: 'tag'
