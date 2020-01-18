@@ -1,5 +1,5 @@
-name: Bump Semantic Version
-description: GitHub action to increment a given semantic version
+name: Increment Semantic Version
+description: Bump a given semantic version by a release type ( major | feature | bug | alpha | beta | rc ).
 author: Christian Dräger
 branding:
   icon: 'tag'

@@ -1,6 +1,6 @@
-# Bump Semantic Version
+# Increment Semantic Version
 
-This is a GitHub action to increment a given semantic version by a given version fragment.
+This is a GitHub action to bump a given semantic version, depending on a given version fragment.
 
 ## Inputs
 
@@ -10,7 +10,7 @@ This is a GitHub action to increment a given semantic version by a given version
 
 ### `version-fragment`
 
-**Required** The versions fragment you want to increment. 
+**Required** The versions fragment you want to increment.
 Possible options are [ major | feature | bug | alpha | beta | rc ]
 
 ## Outputs
@@ -23,9 +23,14 @@ The incremented version.
 
     - name: Bump release version
       id: bump_version
-      uses: actions/bump-semantic-version@v1
+      uses: christian-draeger/increment-semantic-version@1.0.0
       with:
         current-version: '2.11.7-alpha3'
         version-fragment: 'feature'
     - name: Do something with your bumped release version
       run: echo ${{ steps.bump_version.outputs.next-version }}
+      # will print 2.12.0
+
+
+# License
+The scripts and documentation in this project are released under the [MIT License](LICENSE)
