@@ -41,25 +41,25 @@ main() {
   # increment version number based on given release type
   case "$releaseType" in
   "major")
-    ((major++)); minor=0; build=0; pre="";;
+    ((++major)); minor=0; build=0; pre="";;
   "feature")
-    ((minor++)); build=0; pre="";;
+    ((++minor)); build=0; pre="";;
   "bug")
-    ((build++)); pre="";;
+    ((++build)); pre="";;
   "alpha")
-    ((preversion++))
+    ((++preversion))
     if [[ "$pre" != "-alpha" ]]; then
       preversion=1
     fi
     pre="-alpha$preversion";;
   "beta")
-    ((preversion++))
+    ((++preversion))
     if [[ "$pre" != "-beta" ]]; then
       preversion=1
     fi
     pre="-beta$preversion";;
   "rc")
-    ((preversion++))
+    ((++preversion))
     if [[ "$pre" != "-rc" ]]; then
       preversion=1
     fi
