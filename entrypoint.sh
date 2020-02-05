@@ -23,29 +23,29 @@ main() {
     echo "valid argument: [ ${possibleReleaseTypes[*]} ]"; exit 1
   fi
 
-  major=0; minor=0; build=0; pre=""; preversion=0
+  major=0; minor=0; patch=0; pre=""; preversion=0
 
   # break down the version number into it's components
   regex="^([0-9]+).([0-9]+).([0-9]+)((-[a-z]+)([0-9]+))?$"
   if [[ $prev_version =~ $regex ]]; then
     major="${BASH_REMATCH[1]}"
     minor="${BASH_REMATCH[2]}"
-    build="${BASH_REMATCH[3]}"
+    patch="${BASH_REMATCH[3]}"
     pre="${BASH_REMATCH[5]}"
     preversion="${BASH_REMATCH[6]}"
   else
-    echo "previous version '$prev_version' is not a symantic version"
+    echo "previous version '$prev_version' is not a semantic version"
     exit 1
   fi
 
   # increment version number based on given release type
   case "$releaseType" in
   "major")
-    ((++major)); minor=0; build=0; pre="";;
+    ((++major)); minor=0; patch=0; pre="";;
   "feature")
-    ((++minor)); build=0; pre="";;
+    ((++minor)); patch=0; pre="";;
   "bug")
-    ((++build)); pre="";;
+    ((++patch)); pre="";;
   "alpha")
     ((++preversion))
     if [[ "$pre" != "-alpha" ]]; then
@@ -66,7 +66,7 @@ main() {
     pre="-rc$preversion";;
   esac
 
-  next_version="${major}.${minor}.${build}${pre}"
+  next_version="${major}.${minor}.${patch}${pre}"
   echo "create $releaseType-release version: $prev_version -> $next_version"
 
   echo ::set-output name=next-version::"$next_version"
