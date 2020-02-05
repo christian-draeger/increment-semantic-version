@@ -47,18 +47,27 @@ main() {
   "bug")
     ((++patch)); pre="";;
   "alpha")
+    if [[ ! -z "$preversion" ]]; then
+      preversion=0
+    fi
     ((++preversion))
     if [[ "$pre" != "-alpha" ]]; then
       preversion=1
     fi
     pre="-alpha$preversion";;
   "beta")
+    if [[ ! -z "$preversion" ]]; then
+      preversion=0
+    fi
     ((++preversion))
     if [[ "$pre" != "-beta" ]]; then
       preversion=1
     fi
     pre="-beta$preversion";;
   "rc")
+    if [[ ! -z "$preversion" ]]; then
+      preversion=0
+    fi
     ((++preversion))
     if [[ "$pre" != "-rc" ]]; then
       preversion=1
