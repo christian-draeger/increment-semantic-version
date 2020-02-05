@@ -11,16 +11,16 @@ set -euo pipefail
 
 main() {
 
-  prev_version="$1"; releaseType="$2"
+  prev_version="$1"; release_type="$2"
 
   if [[ "$prev_version" == "" ]]; then
     echo "could not read previous version"; exit 1
   fi
 
-  possibleReleaseTypes="major feature bug alpha beta rc"
+  possible_release_types="major feature bug alpha beta rc"
 
-  if [[ ! ${possibleReleaseTypes[*]} =~ ${releaseType} ]]; then
-    echo "valid argument: [ ${possibleReleaseTypes[*]} ]"; exit 1
+  if [[ ! ${possible_release_types[*]} =~ ${release_type} ]]; then
+    echo "valid argument: [ ${possible_release_types[*]} ]"; exit 1
   fi
 
   major=0; minor=0; patch=0; pre=""; preversion=0
@@ -39,7 +39,7 @@ main() {
   fi
 
   # increment version number based on given release type
-  case "$releaseType" in
+  case "$release_type" in
   "major")
     ((++major)); minor=0; patch=0; pre="";;
   "feature")
@@ -67,7 +67,7 @@ main() {
   esac
 
   next_version="${major}.${minor}.${patch}${pre}"
-  echo "create $releaseType-release version: $prev_version -> $next_version"
+  echo "create $release_type-release version: $prev_version -> $next_version"
 
   echo ::set-output name=next-version::"$next_version"
 }
