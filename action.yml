@@ -1,6 +1,6 @@
 name: Increment Semantic Version
-description: Bump a given semantic version by a release type ( major | feature | bug | alpha | beta | rc ).
-author: Christian Dräger
+description: Bump a given semantic version by a release type ( major | minor | patch ) and add a possible postfix
+author: Martin Beentjes
 branding:
   icon: 'tag'
   color: 'purple'
