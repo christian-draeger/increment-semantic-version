@@ -1,5 +1,5 @@
 name: Increment Semantic Version
-description: Bump a given semantic version by a release type ( major | minor | patch ) and add a possible postfix
+description: Bump a given semantic version by a release type ( major | minor | patch ) and add a possible postfix ( alpha | beta | rc )
 author: Christian Dräger
 branding:
   icon: 'tag'
