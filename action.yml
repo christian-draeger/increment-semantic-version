@@ -1,6 +1,6 @@
 name: Increment Semantic Version
 description: Bump a given semantic version by a release type ( major | minor | patch ) and add a possible postfix
-author: Christan Dräger
+author: Christian Dräger
 branding:
   icon: 'tag'
   color: 'purple'
