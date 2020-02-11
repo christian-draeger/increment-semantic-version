@@ -24,7 +24,7 @@ The incremented version.
 
     - name: Bump release version
       id: bump_version
-      uses: christian-draeger/increment-semantic-version@1.0.0
+      uses: christian-draeger/increment-semantic-version@1.0.1
       with:
         current-version: '2.11.7-alpha3'
         version-fragment: 'feature'
