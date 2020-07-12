@@ -47,30 +47,39 @@ main() {
   "bug")
     ((++patch)); pre="";;
   "alpha")
-    if [[ ! -z "$preversion" ]]; then
-      preversion=0
-    fi
-    ((++preversion))
-    if [[ "$pre" != "-alpha" ]]; then
-      preversion=1
+    if [[ -z "$preversion" ]];
+      then
+        preversion=0
+      else
+        if [[ "$pre" != "-alpha" ]];
+          then
+          preversion=1
+          else ((++preversion))
+        fi
     fi
     pre="-alpha$preversion";;
   "beta")
-    if [[ ! -z "$preversion" ]]; then
-      preversion=0
-    fi
-    ((++preversion))
-    if [[ "$pre" != "-beta" ]]; then
-      preversion=1
+    if [[ -z "$preversion" ]];
+      then
+        preversion=0
+      else
+        if [[ "$pre" != "-beta" ]];
+          then
+          preversion=1
+          else ((++preversion))
+        fi
     fi
     pre="-beta$preversion";;
   "rc")
-    if [[ ! -z "$preversion" ]]; then
-      preversion=0
-    fi
-    ((++preversion))
-    if [[ "$pre" != "-rc" ]]; then
-      preversion=1
+    if [[ -z "$preversion" ]];
+      then
+        preversion=0
+      else
+        if [[ "$pre" != "-rc" ]];
+          then
+          preversion=1
+          else ((++preversion))
+        fi
     fi
     pre="-rc$preversion";;
   esac
