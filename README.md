@@ -42,7 +42,7 @@ The incremented version.
 | feature          | 2.11.7-alpha3   |   | 2.12.0        |
 | bug              | 2.11.7          |   | 2.11.8        |
 | bug              | 2.11.7-alpha3   |   | 2.11.8        |
-| alpha            | 2.11.7          |   | 2.11.7-alpha4 |
+| alpha            | 2.11.7          |   | 2.11.7-alpha1 |
 | alpha            | 2.11.7-alpha3   |   | 2.11.7-alpha4 |
 | beta             | 2.11.7          |   | 2.11.7-beta1  |
 | beta             | 2.11.7-alpha3   |   | 2.11.7-beta1  |
