@@ -87,7 +87,7 @@ main() {
   next_version="${major}.${minor}.${patch}${pre}"
   echo "create $release_type-release version: $prev_version -> $next_version"
 
-  echo "'next-version'=$next_version" >> $GITHUB_OUTPUT
+  echo "next-version=$next_version" >> $GITHUB_OUTPUT
 }
 
 main "$1" "$2"
