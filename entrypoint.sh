@@ -26,7 +26,7 @@ main() {
   major=0; minor=0; patch=0; pre=""; preversion=0
 
   # break down the version number into it's components
-  regex="^([0-9]+).([0-9]+).([0-9]+)((-[a-z]+).?([0-9]+))?$"
+  regex="^v?([0-9]+).([0-9]+).([0-9]+)((-[a-z]+).?([0-9]+))?$"
   if [[ $prev_version =~ $regex ]]; then
     major="${BASH_REMATCH[1]}"
     minor="${BASH_REMATCH[2]}"
