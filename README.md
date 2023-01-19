@@ -1,5 +1,7 @@
 # Increment Semantic Version
 
+A fork of christian-draeger/increment-semantic-version
+
 This is a GitHub action to bump a given semantic version, depending on a given version fragment.
 
 ## Inputs
