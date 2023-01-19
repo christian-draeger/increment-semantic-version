@@ -1,5 +1,5 @@
 name: Increment Version
-descriptionaa: a fork of christian-draeger/increment-semantic-version, Bump a given semantic version by a release type and add a possible postfix.
+descriptionaa: Bump a given semantic version by a release type and add a possible postfix.
 author: Nathan Tamez
 branding:
   icon: 'tag'
