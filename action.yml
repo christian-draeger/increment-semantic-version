@@ -1,5 +1,5 @@
 name: Increment Version
-descriptionaa: Bump a given semantic version by a release type and add a possible postfix.
+descriptionaa: Bump a given semantic version given a release type
 author: Nathan Tamez
 branding:
   icon: 'tag'
