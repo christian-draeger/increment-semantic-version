@@ -52,6 +52,9 @@ The incremented version.
 | beta             | 2.11.7          |   | 2.11.7-beta.1  |
 | beta             | 2.11.7-alpha3   |   | 2.11.7-beta.1  |
 | beta             | 2.11.7-alpha.3  |   | 2.11.7-beta.1  |
+| pre              | 2.11.7          |   | 2.11.7-pre.1   |
+| pre              | 2.11.7-alpha3   |   | 2.11.7-pre.1   |
+| pre              | 2.11.7-alpha.3  |   | 2.11.7-pre.1   |
 | rc               | 2.11.7          |   | 2.11.7-rc.1    |
 | rc               | 2.11.7-alpha3   |   | 2.11.7-rc.1    |
 | rc               | 2.11.7-alpha.3  |   | 2.11.7-rc.1    |
