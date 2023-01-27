@@ -70,6 +70,18 @@ main() {
         fi
     fi
     pre="-beta.$preversion";;
+  "pre")
+    if [[ -z "$preversion" ]];
+      then
+        preversion=0
+      else
+        if [[ "$pre" != "-pre" ]];
+          then
+          preversion=1
+          else ((++preversion))
+        fi
+    fi
+    pre="-pre.$preversion";;
   "rc")
     if [[ -z "$preversion" ]];
       then
