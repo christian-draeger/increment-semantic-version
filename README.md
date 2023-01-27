@@ -12,7 +12,7 @@ This is a GitHub action to bump a given semantic version, depending on a given v
 
 **Required** The versions fragment you want to increment.
 
-Possible options are **[ major | feature | bug | alpha | beta | rc ]**
+Possible options are **[ major | feature | bug | alpha | beta | pre | rc ]**
 
 ## Outputs
 
@@ -26,7 +26,7 @@ The incremented version.
       id: bump_version
       uses: christian-draeger/increment-semantic-version@1.0.3
       with:
-        current-version: '2.11.7-alpha3'
+        current-version: '2.11.7-alpha.3' # also accepted: 'v2.11.7-alpha.3' | '2.11.7-alpha3'
         version-fragment: 'feature'
     - name: Do something with your bumped release version
       run: echo ${{ steps.bump_version.outputs.next-version }}
@@ -34,20 +34,27 @@ The incremented version.
       
 ## input / output Examples
 
-| version-fragment | current-version |   | output        |
-| ---------------- | --------------- | - | ------------- |
-| major            | 2.11.7          |   | 3.0.0         |
-| major            | 2.11.7-alpha3   |   | 3.0.0         |
-| feature          | 2.11.7          |   | 2.12.0        |
-| feature          | 2.11.7-alpha3   |   | 2.12.0        |
-| bug              | 2.11.7          |   | 2.11.8        |
-| bug              | 2.11.7-alpha3   |   | 2.11.8        |
-| alpha            | 2.11.7          |   | 2.11.7-alpha1 |
-| alpha            | 2.11.7-alpha3   |   | 2.11.7-alpha4 |
-| beta             | 2.11.7          |   | 2.11.7-beta1  |
-| beta             | 2.11.7-alpha3   |   | 2.11.7-beta1  |
-| rc               | 2.11.7          |   | 2.11.7-rc1    |
-| rc               | 2.11.7-alpha3   |   | 2.11.7-rc1    |
+| version-fragment | current-version |   | output         |
+| ---------------- | --------------- | - | -------------- |
+| major            | 2.11.7          |   | 3.0.0          |
+| major            | v2.11.7         |   | 3.0.0          |
+| major            | 2.11.7-alpha3   |   | 3.0.0          |
+| major            | 2.11.7-alpha.3  |   | 3.0.0          |
+| feature          | 2.11.7          |   | 2.12.0         |
+| feature          | 2.11.7-alpha3   |   | 2.12.0         |
+| feature          | 2.11.7-alpha.3  |   | 2.12.0         |
+| bug              | 2.11.7          |   | 2.11.8         |
+| bug              | 2.11.7-alpha3   |   | 2.11.8         |
+| bug              | 2.11.7-alpha.3  |   | 2.11.8         |
+| alpha            | 2.11.7          |   | 2.11.7-alpha.1 |
+| alpha            | 2.11.7-alpha3   |   | 2.11.7-alpha.4 |
+| alpha            | 2.11.7-alpha.3  |   | 2.11.7-alpha.4 |
+| beta             | 2.11.7          |   | 2.11.7-beta.1  |
+| beta             | 2.11.7-alpha3   |   | 2.11.7-beta.1  |
+| beta             | 2.11.7-alpha.3  |   | 2.11.7-beta.1  |
+| rc               | 2.11.7          |   | 2.11.7-rc.1    |
+| rc               | 2.11.7-alpha3   |   | 2.11.7-rc.1    |
+| rc               | 2.11.7-alpha.3  |   | 2.11.7-rc.1    |
 
 # License
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
