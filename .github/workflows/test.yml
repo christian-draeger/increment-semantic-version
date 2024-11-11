@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  setup-brioche:
+  test-action:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -19,7 +19,7 @@ jobs:
         uses: ./ # Uses an action in the root directory
         with:
           current-version: 1.0.0
-          version-fragment: minor
+          version-fragment: feature
         id: increment_version # Adding an ID to reference outputs
 
       - name: Validate next version
