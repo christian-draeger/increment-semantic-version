@@ -14,9 +14,11 @@ inputs:
 outputs:
   next-version:
     description: 'The incremented version'
+    value: ${{ steps.bump-version.outputs.next-version }}
 runs:
   using: "composite"
   steps:
     - name: Run entrypoint.sh
+      id: bump-version
       shell: bash
       run: ./entrypoint.sh ${{ inputs.current-version }} ${{ inputs.version-fragment }}
