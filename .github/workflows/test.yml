@@ -24,8 +24,7 @@ jobs:
 
       - name: Validate next version
         run: |
-          EXPECTED_VERSION="1.1.0" # Set the expected version here
-          cat $GITHUB_OUTPUT
+          EXPECTED_VERSION="1.1.0"
           if [ "${{ steps.increment-version.outputs.next-version }}" != "$EXPECTED_VERSION" ]; then
             echo "Validation failed! Expected $EXPECTED_VERSION but got ${{ steps.increment-version.outputs.next_version }}."
             exit 1
