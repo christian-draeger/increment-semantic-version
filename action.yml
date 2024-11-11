@@ -1,9 +1,9 @@
 name: Increment Semantic Version
 description: Bump a given semantic version by a release type ( major | minor | patch ) and add a possible postfix ( alpha | beta | rc )
-author: Christian Dräger/Ashley Hutson
+author: Christian Dräger
 branding:
   icon: 'tag'
-  color: 'orange'
+  color: 'purple'
 inputs:
   current-version:
     description: 'The current semantic version you want to increment'
