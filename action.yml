@@ -1,9 +1,9 @@
 name: Increment Semantic Version
 description: Bump a given semantic version by a release type ( major | minor | patch ) and add a possible postfix ( alpha | beta | rc )
-author: Christian Dräger
+author: Christian Dräger/Ashley Hutson
 branding:
   icon: 'tag'
-  color: 'purple'
+  color: 'orange'
 inputs:
   current-version:
     description: 'The current semantic version you want to increment'
@@ -15,8 +15,8 @@ outputs:
   next-version:
     description: 'The incremented version'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.current-version }}
-    - ${{ inputs.version-fragment }}
+  using: "composite"
+  steps:
+    - name: Run entrypoint.sh
+      shell: bash
+      run: scripts/entrypoint.sh ${{ inputs.current-version }} ${{ inputs.version-fragment }}
