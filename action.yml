@@ -9,7 +9,7 @@ inputs:
     description: 'The current semantic version you want to increment'
     required: true
   version-fragment:
-    description: 'The versions fragment you want to increment. possible options are [ major | feature | bug | alpha | beta | rc ]'
+    description: 'The versions fragment you want to increment. possible options are [ major | feature| minor | bug | patch | hotfix | alpha | beta | rc ]'
     required: true
 outputs:
   next-version:
