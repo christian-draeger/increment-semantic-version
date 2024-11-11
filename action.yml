@@ -19,4 +19,4 @@ runs:
   steps:
     - name: Run entrypoint.sh
       shell: bash
-      run: scripts/entrypoint.sh ${{ inputs.current-version }} ${{ inputs.version-fragment }}
+      run: entrypoint.sh ${{ inputs.current-version }} ${{ inputs.version-fragment }}

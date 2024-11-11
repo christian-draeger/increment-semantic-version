@@ -1,0 +1,34 @@
+name: Test Increment Semantic Version
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  setup-brioche:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Test action
+        uses: ./ # Uses an action in the root directory
+        with:
+          current-version: 1.0.0
+          version-fragment: minor
+        id: increment_version # Adding an ID to reference outputs
+
+      - name: Validate next version
+        run: |
+          EXPECTED_VERSION="1.1.0" # Set the expected version here
+          if [ "${{ steps.increment_version.outputs.next-version }}" != "$EXPECTED_VERSION" ]; then
+            echo "Validation failed! Expected $EXPECTED_VERSION but got ${{ steps.increment_version.outputs.next-version }}."
+            exit 1
+          else
+            echo "Validation passed! Next version is $EXPECTED_VERSION as expected."
+          fi
+        
