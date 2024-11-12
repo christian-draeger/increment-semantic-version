@@ -9,14 +9,17 @@ inputs:
     description: 'The current semantic version you want to increment'
     required: true
   version-fragment:
-    description: 'The versions fragment you want to increment. possible options are [ major | feature | bug | alpha | beta | rc ]'
+    description: 'The versions fragment you want to increment. possible options are [ major | feature| minor | bug | patch | hotfix | alpha | beta | rc ]'
     required: true
 outputs:
   next-version:
     description: 'The incremented version'
+    value: ${{ steps.bump-version.outputs.next-version }}
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.current-version }}
-    - ${{ inputs.version-fragment }}
+  using: "composite"
+  steps:
+    - name: Run entrypoint.sh
+      id: bump-version
+      shell: bash
+      run: |
+        "$GITHUB_ACTION_PATH"/entrypoint.sh "${{ inputs.current-version }}" "${{ inputs.version-fragment }}"
