@@ -24,15 +24,39 @@ The incremented version.
 
 ## Example usage
 
-    - name: Bump release version
-      id: bump_version
-      uses: christian-draeger/increment-semantic-version@1.1.0
-      with:
-        current-version: '2.11.7-alpha.3' # also accepted: 'v2.11.7-alpha.3' | '2.11.7-alpha3'
-        version-fragment: 'feature'
-    - name: Do something with your bumped release version
-      run: echo ${{ steps.bump_version.outputs.next-version }}
-      # will print 2.12.0
+    name: Update Version
+    on:
+      workflow_dispatch:
+    
+    env:
+      CURRENT_VERSION_TOP_LEVEL: 'v2.11.7-alpha.3'
+    
+    jobs:
+      deploy:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Bump release version
+          id: bump_version
+          uses: christian-draeger/increment-semantic-version@1.2.0
+          with:
+            current-version: ${{ env.CURRENT_VERSION_TOP_LEVEL }} # also accepted: 'v2.11.7-alpha.3' | '2.11.7-alpha3'
+            version-fragment: 'feature'
+        - name: Do something with your bumped release version
+          run: echo ${{ steps.bump_version.outputs.next-version }} # will print 2.12.0
+      env-set-in-job:
+        runs-on: ubuntu-latest
+        steps:
+          - name: set current version from file
+            id: set_current_version
+            run: echo "::set-env name=CURRENT_VERSION::$(cat version.txt)"
+          - name: Bump release version
+            id: bump_version
+            uses: christian-draeger/increment-semantic-version@1.2.0
+            with:
+              current-version: ${{ env.CURRENT_VERSION }} # also accepted: 'v2.11.7-alpha.3' | '2.11.7-alpha3'
+              version-fragment: 'feature'
+          - name: Do something with your bumped release version
+            run: echo ${{ steps.bump_version.outputs.next-version }} # will print 2.12.0
       
 ## input / output Examples
 
