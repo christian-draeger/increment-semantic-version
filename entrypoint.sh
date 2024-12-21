@@ -26,13 +26,13 @@ main() {
   major=0; minor=0; patch=0; pre=""; preversion=0
 
   # break down the version number into its components
-  regex="^v?([0-9]+)\\.([0-9]+)\\.([0-9]+)(-([a-z]+)([0-9]+|\\.([0-9]+))?)?$"
+  regex="^v?([0-9]+)\.([0-9]+)\.([0-9]+)(-([a-z]+)(\\.([0-9]+))?)?$"
   if [[ $prev_version =~ $regex ]]; then
     major="${BASH_REMATCH[1]}"
     minor="${BASH_REMATCH[2]}"
     patch="${BASH_REMATCH[3]}"
     pre="${BASH_REMATCH[5]}"
-    preversion="${BASH_REMATCH[6]:-${BASH_REMATCH[7]:-0}}" # Use preversion from either match
+    preversion="${BASH_REMATCH[7]}"
   else
     echo "previous version '$prev_version' is not a semantic version"
     exit 1
