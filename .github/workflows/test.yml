@@ -14,16 +14,35 @@ jobs:
     strategy:
       matrix:
         # Define the release types and their expected versions
-        release-type:
-          - { version-fragment: "major", expected-version: "2.0.0" }
-          - { version-fragment: "feature", expected-version: "1.1.0" }
-          - { version-fragment: "minor", expected-version: "1.1.0" }
-          - { version-fragment: "bug", expected-version: "1.0.1" }
-          - { version-fragment: "patch", expected-version: "1.0.1" }
-          - { version-fragment: "hotfix", expected-version: "1.0.1" }
-          - { version-fragment: "alpha", expected-version: "1.0.0-alpha.1" }
-          - { version-fragment: "beta", expected-version: "1.0.0-beta.1" }
-          - { version-fragment: "rc", expected-version: "1.0.0-rc.1" }
+        include:
+          # Major, Minor, and Patch increments
+          - { current-version: "1.0.0", version-fragment: "major", expected-version: "2.0.0" }
+          - { current-version: "1.0.0", version-fragment: "minor", expected-version: "1.1.0" }
+          - { current-version: "1.0.0", version-fragment: "patch", expected-version: "1.0.1" }
+
+          # Pre-Version increments from stable
+          - { current-version: "1.0.0", version-fragment: "alpha", expected-version: "1.0.1-alpha.0" }
+          - { current-version: "1.0.0", version-fragment: "beta", expected-version: "1.0.1-beta.0" }
+          - { current-version: "1.0.0", version-fragment: "rc", expected-version: "1.0.1-rc.0" }
+
+          # Pre-Version increments from existing pre-versions without increment
+          - { current-version: "1.0.1-alpha.0", version-fragment: "alpha", expected-version: "1.0.1-alpha.1" }
+          - { current-version: "1.0.1-beta.0", version-fragment: "beta", expected-version: "1.0.1-beta.1" }
+          - { current-version: "1.0.1-rc.0", version-fragment: "rc", expected-version: "1.0.1-rc.1" }
+
+          # Pre-Version increments from existing pre-versions with increment
+          - { current-version: "1.0.1-alpha.1", version-fragment: "alpha", expected-version: "1.0.1-alpha.2" }
+          - { current-version: "1.0.1-beta.1", version-fragment: "beta", expected-version: "1.0.1-beta.2" }
+          - { current-version: "1.0.1-rc.1", version-fragment: "rc", expected-version: "1.0.1-rc.2" }
+
+          # Transition between different pre-version types
+          - { current-version: "1.0.1-alpha.1", version-fragment: "beta", expected-version: "1.0.1-beta.0" }
+          - { current-version: "1.0.1-beta.1", version-fragment: "rc", expected-version: "1.0.1-rc.0" }
+
+          # Transition from pre-version to stable
+          - { current-version: "1.0.1-alpha.1", version-fragment: "patch", expected-version: "1.0.1" }
+          - { current-version: "1.0.1-beta.1", version-fragment: "patch", expected-version: "1.0.1" }
+          - { current-version: "1.0.1-rc.1", version-fragment: "patch", expected-version: "1.0.1" }
 
     steps:
       - name: Checkout repository
@@ -33,12 +52,12 @@ jobs:
         id: increment-version
         uses: ./
         with:
-          current-version: 1.0.0
-          version-fragment: ${{ matrix.release-type.version-fragment }}
+          current-version: ${{ matrix.current-version }}
+          version-fragment: ${{ matrix.version-fragment }}
 
       - name: Validate next version
         run: |
-          EXPECTED_VERSION="${{ matrix.release-type.expected-version }}"
+          EXPECTED_VERSION="${{ matrix.expected-version }}"
           if [ "${{ steps.increment-version.outputs.next-version }}" != "$EXPECTED_VERSION" ]; then
             echo "Validation failed! Expected $EXPECTED_VERSION but got ${{ steps.increment-version.outputs.next-version }}."
             exit 1
