@@ -37,7 +37,7 @@ The incremented version.
         steps:
           - name: Bump release version
           id: bump_version
-          uses: christian-draeger/increment-semantic-version@1.2.2
+          uses: christian-draeger/increment-semantic-version@1.2.3
           with:
             current-version: ${{ env.CURRENT_VERSION_TOP_LEVEL }} # also accepted: 'v2.11.7-alpha.3' | '2.11.7-alpha3'
             version-fragment: 'feature'
@@ -94,6 +94,9 @@ The incremented version.
 | rc               | 2.11.7          | 2.11.7-rc.1    |
 | rc               | 2.11.7-alpha3   | 2.11.7-rc.1    |
 | rc               | 2.11.7-alpha.3  | 2.11.7-rc.1    |
+| stable           | 2.11.7          | 2.11.7         |
+| stable           | 2.11.7-alpha3   | 2.11.7         |
+| stable           | 2.11.7-alpha.3  | 2.11.7         |
 
 ## License
 
