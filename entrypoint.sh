@@ -48,12 +48,8 @@ main() {
     ((++patch)); pre="";;
   "alpha"|"beta"|"pre"|"rc")
     if [[ -z "$pre" ]]; then
-      # Increment patch or minor if transitioning from stable to pre-release
-      if [[ "$release_type" == "rc" ]]; then
-        ((++minor)); patch=0
-      else
-        ((++patch))
-      fi
+      # Increment patch if transitioning from stable to pre-release
+      ((++patch))
       preversion=0
     elif [[ "$pre" != "$release_type" ]]; then
       preversion=1
