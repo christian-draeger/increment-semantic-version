@@ -17,7 +17,7 @@ main() {
     echo "could not read previous version"; exit 1
   fi
 
-  possible_release_types=(major feature minor bug patch hotfix alpha beta pre rc)
+  possible_release_types=(major feature minor bug patch hotfix alpha beta pre rc stable)
 
   if [[ ! " ${possible_release_types[*]} " =~ " ${release_type} " ]]; then
     echo "valid argument: [ ${possible_release_types[*]} ]"; exit 1
@@ -47,12 +47,23 @@ main() {
   "bug"|"patch"|"hotfix")
     ((++patch)); pre="";;
   "alpha"|"beta"|"pre"|"rc")
-    if [[ "$pre" != "$release_type" ]]; then
+    if [[ -z "$pre" ]]; then
+      # Increment patch or minor if transitioning from stable to pre-release
+      if [[ "$release_type" == "rc" ]]; then
+        ((++minor)); patch=0
+      else
+        ((++patch))
+      fi
+      preversion=0
+    elif [[ "$pre" != "$release_type" ]]; then
       preversion=1
     else
       ((++preversion))
     fi
     pre="-$release_type.$preversion";;
+  "stable")
+    # Remove pre-release tag
+    pre=""; preversion=0;;
   esac
 
   next_version="${major}.${minor}.${patch}${pre}"
