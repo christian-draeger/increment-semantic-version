@@ -21,9 +21,9 @@ jobs:
           - { current-version: "1.0.0", version-fragment: "patch", expected-version: "1.0.1" }
 
           # Pre-Version increments from stable
-          - { current-version: "1.0.0", version-fragment: "alpha", expected-version: "1.0.1-alpha.0" }
-          - { current-version: "1.0.0", version-fragment: "beta", expected-version: "1.0.1-beta.0" }
-          - { current-version: "1.0.0", version-fragment: "rc", expected-version: "1.0.1-rc.0" }
+          - { current-version: "1.0.0", version-fragment: "alpha", expected-version: "1.0.1-alpha.1" }
+          - { current-version: "1.0.0", version-fragment: "beta", expected-version: "1.0.1-beta.1" }
+          - { current-version: "1.0.0", version-fragment: "rc", expected-version: "1.0.1-rc.1" }
 
           # Pre-Version increments from existing pre-versions without increment
           - { current-version: "1.0.1-alpha.0", version-fragment: "alpha", expected-version: "1.0.1-alpha.1" }
@@ -36,8 +36,8 @@ jobs:
           - { current-version: "1.0.1-rc.1", version-fragment: "rc", expected-version: "1.0.1-rc.2" }
 
           # Transition between different pre-version types
-          - { current-version: "1.0.1-alpha.1", version-fragment: "beta", expected-version: "1.0.1-beta.0" }
-          - { current-version: "1.0.1-beta.1", version-fragment: "rc", expected-version: "1.0.1-rc.0" }
+          - { current-version: "1.0.1-alpha.1", version-fragment: "beta", expected-version: "1.0.1-beta.1" }
+          - { current-version: "1.0.1-beta.1", version-fragment: "rc", expected-version: "1.0.1-rc.1" }
 
           # Transition from pre-version to stable
           - { current-version: "1.0.1-alpha.1", version-fragment: "patch", expected-version: "1.0.1" }
