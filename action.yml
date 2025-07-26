@@ -20,6 +20,9 @@ runs:
   steps:
     - name: Run entrypoint.sh
       id: bump-version
+      env:
+        CURRENT_VERSION: "${{ inputs.current-version }}"
+        VERSION_FRAGMENT: "${{ inputs.version-fragment }}"
       shell: bash
       run: |
-        "$GITHUB_ACTION_PATH"/entrypoint.sh "${{ inputs.current-version }}" "${{ inputs.version-fragment }}"
+        "$GITHUB_ACTION_PATH"/entrypoint.sh "${CURRENT_VERSION}" "${VERSION_FRAGMENT}"
